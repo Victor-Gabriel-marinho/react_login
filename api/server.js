@@ -8,9 +8,29 @@ import cors from "cors";
 
 
  app.post('/usuarios', (req,res) => {
+    const q = "INSERT INTO usuarios ('nome','email','idade') VALUES(?)";
+    const values = [
+        req.body.nome,
+        req.body.email,
+        req.body.idade,
+    ];
 
-    res.status(201).json(req.body);
- })
+    db.query(q, [values], (err) => {
+        if (err) return res.json(err);
+
+        return res.status(200).json("usuário criado com sucesso");  
+    });
+ });
+
+ app.delete('/:id', (req,res) => {
+    const q = "DELETE FROM usuarios WHERE `id` = ?";
+
+    db.query(q, [req.params.id], (err) => {
+        if (err) return res.json(err);
+
+        return res.status(200).json("usuário deletado");    
+    });
+ });
 
 app.get('/', (_,res) => {
     const q = "SELECT * FROM usuarios";
