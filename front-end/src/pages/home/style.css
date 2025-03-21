@@ -56,6 +56,15 @@ form {
 .Age{
     -moz-appearance: textfield;
 }
+
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap ;
+
+}
+
 .card {
     display: flex;
     justify-content: space-between;

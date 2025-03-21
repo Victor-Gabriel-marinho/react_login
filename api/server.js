@@ -7,13 +7,13 @@ import cors from "cors";
  app.use(cors());
 
 
- app.post('/usuarios', (req,res) => {
-    const q = "INSERT INTO usuarios ('nome','email','idade') VALUES(?)";
+ app.post('/', (req,res) => {
+    const q = "INSERT INTO usuarios (`nome`,`email`,`idade`) VALUES(?)";
     const values = [
         req.body.nome,
         req.body.email,
         req.body.idade,
-    ];
+    ]
 
     db.query(q, [values], (err) => {
         if (err) return res.json(err);
@@ -30,7 +30,7 @@ import cors from "cors";
 
         return res.status(200).json("usuário deletado");    
     });
- });
+});
 
 app.get('/', (_,res) => {
     const q = "SELECT * FROM usuarios";
